@@ -1,0 +1,15 @@
+{
+    "name": "ufic/robot",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "sasha tryakin",
+            "email": "sasha@tryakin.ru"
+        }
+    ],
+    "require": {
+        "nutgram/nutgram": "^4.5",
+        "php-patterns/activerecord": "^1.1"
+    }
+}
