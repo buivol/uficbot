@@ -1,21 +1,79 @@
 <?php
 
+global $db;
 require_once './init.php';
 
 use SergiX44\Nutgram\Nutgram;
+use \Yiisoft\ActiveRecord\ActiveQuery;
+use models\User;
+
+const STEP_REGISTRATION_START = 'registration_start';
+const STEP_REGISTRATION_NAME = 'registration_name';
+
+const STEP_MAINPAGE = 'mainpage';
+
+
+file_put_contents('last_request.log', file_get_contents('php://input'));
+
+function messageHandler(Nutgram $bot, User $user)
+{
+    if ($user->step == STEP_REGISTRATION_START) {
+        $bot->sendMessage("Привет {$user->nickname}, для начала тебе надо пройти процедуру регистрации. Введи своё имя");
+    } else if ($user->step == STEP_REGISTRATION_NAME) {
+        $user->first_name = $bot->message()->text;
+        $bot->sendMessage("Отлично, {$user->first_name}, теперь введи свою фамилию");
+    } else {
+        $bot->sendMessage("Нет действий для шага {$user->step}");
+    }
+    $user->save();
+}
+
 
 /** @var $tg Nutgram */
-
-$tg->onCommand('start {parameter}', function (Nutgram $bot, $parameter) {
-    $bot->sendMessage("Привет {$parameter}");
+$tg->onCommand('start', function (Nutgram $bot) use ($db) {
+    messageHandler($bot, new User($db));
 });
 
-$tg->onCommand('help', function (Nutgram $bot) {
-    $bot->sendMessage('Help me!');
+$tg->onMessage(function (Nutgram $bot) use ($db) {
+
+    $userQuery = new ActiveQuery(User::class, $db);
+
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(~E_ALL);
+
+
+    echo "\r\n ----- 1 -------";
+    $user = $userQuery->findOne($bot->userId());
+    echo "\r\n ----- 2 -------";
+
+
+
+    /** @var User $user */
+    if (!$user) {
+        echo 'Создаем пользователя';
+        // новый пользователь, добавляем в базу
+        $user = new User($db);
+        $user->id = $bot->userId();
+        $user->nickname = $bot->user()->username;
+        $user->step = STEP_REGISTRATION_START;
+        echo 'Пользователь создан';
+    } else {
+        echo 'Пользователь уже есть';
+        $user->step = STEP_MAINPAGE;
+    }
+
+    messageHandler($bot, $user);
 });
+
+
+$tg->fallback(function (Nutgram $bot) {
+    $bot->sendMessage('Sorry, I don\'t understand.');
+});
+
+//$tg->sendMessage(text: 'hi', chat_id: 5583104886);
 
 $tg->run();
-
 
 
 

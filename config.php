@@ -6,10 +6,12 @@ return [
         'token' => '6656623277:AAHBKsg4XPvxgIVbNUMBRsxr3h8iF6V6o9Q',
         'webhookUrl' => 'https://vkrka.ru/uficbot',
     ],
-    'db' => [
-        'host' => 'localhost',
-        'database' => 'u1998825_tg',
-        'username' => 'u1998825_tg',
-        'password' => '@Telega123@',
-    ]
+
+
+    'driver' => new \Yiisoft\Db\Mysql\Driver(
+        (new \Yiisoft\Db\Mysql\Dsn('mysql', '127.0.0.1', 'u1998825_tg', '3306', ['charset' => 'utf8mb4']))->asString(),
+        'u1998825_tg',
+        '@Telega123@',
+    ),
+    
 ];

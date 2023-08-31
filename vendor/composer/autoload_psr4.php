@@ -6,6 +6,15 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Yiisoft\\Json\\' => array($vendorDir . '/yiisoft/json/src'),
+    'Yiisoft\\Factory\\' => array($vendorDir . '/yiisoft/factory/src'),
+    'Yiisoft\\Definitions\\' => array($vendorDir . '/yiisoft/definitions/src'),
+    'Yiisoft\\Db\\Mysql\\' => array($vendorDir . '/yiisoft/db-mysql/src'),
+    'Yiisoft\\Db\\' => array($vendorDir . '/yiisoft/db/src'),
+    'Yiisoft\\Cache\\' => array($vendorDir . '/yiisoft/cache/src'),
+    'Yiisoft\\ActiveRecord\\' => array($vendorDir . '/yiisoft/active-record/src'),
+    'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
+    'Symfony\\Component\\VarDumper\\' => array($vendorDir . '/symfony/var-dumper'),
     'SergiX44\\Nutgram\\' => array($vendorDir . '/nutgram/nutgram/src'),
     'SergiX44\\Hydrator\\' => array($vendorDir . '/nutgram/hydrator/src'),
     'SergiX44\\Container\\' => array($vendorDir . '/sergix44/container/src'),

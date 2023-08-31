@@ -25,12 +25,12 @@ class InstalledVersions
 private static $installed = array (
   'root' => 
   array (
-    'pretty_version' => '1.0.0+no-version-set',
-    'version' => '1.0.0.0',
+    'pretty_version' => 'dev-main',
+    'version' => 'dev-main',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => 'dec8e4e9bf5482f7300fdb8ff1bd21244d5d20bc',
     'name' => 'ufic/robot',
   ),
   'versions' => 
@@ -71,6 +71,15 @@ private static $installed = array (
       ),
       'reference' => 'dff667a46ac37b634dcf68909d9d41e94dc97c27',
     ),
+    'larapack/dd' => 
+    array (
+      'pretty_version' => '1.1',
+      'version' => '1.1.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '561b5111a13d0094b59b5c81b1572489485fb948',
+    ),
     'laravel/serializable-closure' => 
     array (
       'pretty_version' => 'v1.3.1',
@@ -97,15 +106,6 @@ private static $installed = array (
       array (
       ),
       'reference' => '5e6d905d7e16d106fb77d2c5105fb7ab848ce726',
-    ),
-    'php-patterns/activerecord' => 
-    array (
-      'pretty_version' => 'v1.1.11',
-      'version' => '1.1.11.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'b98262eb3b5a0c14e2239fd845c410ec66327b91',
     ),
     'psr/container' => 
     array (
@@ -189,6 +189,13 @@ private static $installed = array (
       ),
       'reference' => '764e0b3939f5ca87cb904f570ef9be2d78a07865',
     ),
+    'psr/simple-cache-implementation' => 
+    array (
+      'provided' => 
+      array (
+        0 => '2.0|3.0',
+      ),
+    ),
     'ralouphie/getallheaders' => 
     array (
       'pretty_version' => '3.0.3',
@@ -216,14 +223,96 @@ private static $installed = array (
       ),
       'reference' => '7c3aff79d10325257a001fcf92d991f24fc967cf',
     ),
+    'symfony/polyfill-mbstring' => 
+    array (
+      'pretty_version' => 'v1.28.0',
+      'version' => '1.28.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '42292d99c55abe617799667f454222c54c60e229',
+    ),
+    'symfony/var-dumper' => 
+    array (
+      'pretty_version' => 'v6.3.4',
+      'version' => '6.3.4.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '2027be14f8ae8eae999ceadebcda5b4909b81d45',
+    ),
     'ufic/robot' => 
     array (
-      'pretty_version' => '1.0.0+no-version-set',
+      'pretty_version' => 'dev-main',
+      'version' => 'dev-main',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'dec8e4e9bf5482f7300fdb8ff1bd21244d5d20bc',
+    ),
+    'yiisoft/active-record' => 
+    array (
+      'pretty_version' => 'dev-master',
+      'version' => 'dev-master',
+      'aliases' => 
+      array (
+        0 => '3.0.x-dev',
+      ),
+      'reference' => '41c66912b49aae072dd75dc6caee10c1c22ee1b0',
+    ),
+    'yiisoft/cache' => 
+    array (
+      'pretty_version' => '3.0.0',
+      'version' => '3.0.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '67ae4b40d3aefd193dfd9a3f458f3e145adb0d84',
+    ),
+    'yiisoft/db' => 
+    array (
+      'pretty_version' => '1.1.1',
+      'version' => '1.1.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '8eca958f8bfaa8459d20aee7aeab194271c93f05',
+    ),
+    'yiisoft/db-mysql' => 
+    array (
+      'pretty_version' => '1.0.1',
+      'version' => '1.0.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '463bab47d1d5b705ad6f6f06a20de9dc16e4a898',
+    ),
+    'yiisoft/definitions' => 
+    array (
+      'pretty_version' => '3.2.0',
+      'version' => '3.2.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '49d9ffa0532aeef1b44eab9c652981fed344c9fa',
+    ),
+    'yiisoft/factory' => 
+    array (
+      'pretty_version' => '1.1.0',
+      'version' => '1.1.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'e93903c7960d0ff5897a9e36ff3b0ecb3ab25a8d',
+    ),
+    'yiisoft/json' => 
+    array (
+      'pretty_version' => '1.0.0',
       'version' => '1.0.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => '51b483aef1cd5d06ea02db3c40707bb6b41ed088',
     ),
   ),
 );

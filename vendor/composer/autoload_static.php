@@ -7,16 +7,30 @@ namespace Composer\Autoload;
 class ComposerStaticInit50f31f36568047fb5d465542e73ffca9
 {
     public static $files = array (
-        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
+        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '6849dc9b0ebd4a5e94b1a098400b5c75' => __DIR__ . '/..' . '/nutgram/nutgram/src/Support/Helpers.php',
-        'dd210022bf435ff398a2e6d7c130d749' => __DIR__ . '/..' . '/php-patterns/activerecord/ActiveRecord.php',
+        '0e423a14e27410a071e5d815d3ffc856' => __DIR__ . '/..' . '/larapack/dd/src/helper.php',
     );
 
     public static $prefixLengthsPsr4 = array (
+        'Y' => 
+        array (
+            'Yiisoft\\Json\\' => 13,
+            'Yiisoft\\Factory\\' => 16,
+            'Yiisoft\\Definitions\\' => 20,
+            'Yiisoft\\Db\\Mysql\\' => 17,
+            'Yiisoft\\Db\\' => 11,
+            'Yiisoft\\Cache\\' => 14,
+            'Yiisoft\\ActiveRecord\\' => 21,
+        ),
         'S' => 
         array (
+            'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Component\\VarDumper\\' => 28,
             'SergiX44\\Nutgram\\' => 17,
             'SergiX44\\Hydrator\\' => 18,
             'SergiX44\\Container\\' => 19,
@@ -46,6 +60,42 @@ class ComposerStaticInit50f31f36568047fb5d465542e73ffca9
     );
 
     public static $prefixDirsPsr4 = array (
+        'Yiisoft\\Json\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/json/src',
+        ),
+        'Yiisoft\\Factory\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/factory/src',
+        ),
+        'Yiisoft\\Definitions\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/definitions/src',
+        ),
+        'Yiisoft\\Db\\Mysql\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/db-mysql/src',
+        ),
+        'Yiisoft\\Db\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/db/src',
+        ),
+        'Yiisoft\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/cache/src',
+        ),
+        'Yiisoft\\ActiveRecord\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/active-record/src',
+        ),
+        'Symfony\\Polyfill\\Mbstring\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'Symfony\\Component\\VarDumper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/var-dumper',
+        ),
         'SergiX44\\Nutgram\\' => 
         array (
             0 => __DIR__ . '/..' . '/nutgram/nutgram/src',
