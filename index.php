@@ -41,7 +41,8 @@ echo "\r\n ----- 0 -------";
 
 $tg->onMessage(function (Nutgram $bot) use ($db, $tg) {
 
-    $tg->sendMessage(text: 'sss', chat_id: 5583104886);
+    $tg->sendMessage(text: 'Сработал webhook', chat_id: 5583104886);
+
     $userQuery = new ActiveQuery(User::class, $db);
     echo "\r\n ----- 1 -------";
     $user = $userQuery->findOne($bot->userId());
