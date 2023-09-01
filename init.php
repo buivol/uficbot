@@ -23,6 +23,6 @@ $db = new Connection($config['driver'], $schemaCache);
 
 
 $tg = new Nutgram($config['telegram']['token'], new Configuration(logger: \SergiX44\Nutgram\Logger\ConsoleLogger::class));
-$tg->setRunningMode(Webhook::class);
+$tg->setRunningMode(\SergiX44\Nutgram\RunningMode\Polling::class);
 //TODO: Сделать чтобы ставился один раз, а не при каждом вызове
 //$tg->setWebhook($config['telegram']['webhookUrl']);
