@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f2324d02-e591-44e5-b85c-bfb693b85172" name="Changes" comment="добавил класс для работы с бд">
+    <list default="true" id="f2324d02-e591-44e5-b85c-bfb693b85172" name="Changes" comment="новая бд">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,7 +45,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1693246547359</updated>
-      <workItem from="1693246548364" duration="20944000" />
+      <workItem from="1693246548364" duration="21389000" />
     </task>
     <task id="LOCAL-00001" summary="тест">
       <option name="closed" value="true" />
@@ -79,7 +79,15 @@
       <option name="project" value="LOCAL" />
       <updated>1693475421772</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="новая бд">
+      <option name="closed" value="true" />
+      <created>1693580688483</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1693580688484</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -92,6 +100,7 @@
     <MESSAGE value="вебхук и команда старт" />
     <MESSAGE value="уработка с ошибками" />
     <MESSAGE value="добавил класс для работы с бд" />
-    <option name="LAST_COMMIT_MESSAGE" value="добавил класс для работы с бд" />
+    <MESSAGE value="новая бд" />
+    <option name="LAST_COMMIT_MESSAGE" value="новая бд" />
   </component>
 </project>
