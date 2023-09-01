@@ -37,29 +37,15 @@ $tg->onCommand('start', function (Nutgram $bot) use ($db) {
     messageHandler($bot, new User($db));
 });
 
-function exceptions_error_handler($severity, $message, $filename, $lineno) {
-    throw new ErrorException($message, 0, $severity, $filename, $lineno);
-}
-
-set_error_handler('exceptions_error_handler');
-
-
 echo "\r\n ----- 0 -------";
 
 $tg->onMessage(function (Nutgram $bot) use ($db, $tg) {
 
     $tg->sendMessage(text: 'sss', chat_id: 5583104886);
-    try {
-        $userQuery = new ActiveQuery(User::class, $db);
-    } catch (Exception $e) {
-        echo 'Выброшено исключение: ',  $e->getMessage(), "\n";
-    }
-
-
+    $userQuery = new ActiveQuery(User::class, $db);
     echo "\r\n ----- 1 -------";
     $user = $userQuery->findOne($bot->userId());
     echo "\r\n ----- 2 -------";
-
 
 
     /** @var User $user */
