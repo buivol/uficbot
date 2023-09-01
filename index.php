@@ -41,10 +41,10 @@ $tg->onCommand('start', function (Nutgram $bot) use ($db) {
 
 echo "\r\n ----- 0 -------";
 
-$tg->onMessage(function (Nutgram $bot) use ($db) {
+$tg->onMessage(function (Nutgram $bot) use ($db, $tg) {
 
     echo "\r\n ----- 0.1 -------";
-    $bot->sendMessage(text: 'sss', chat_id: 5583104886);
+    $tg->sendMessage(text: 'sss', chat_id: 5583104886);
     echo "\r\n ----- 0.2 -------";
     $userQuery = new ActiveQuery(User::class, $db);
 
