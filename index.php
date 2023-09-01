@@ -34,6 +34,8 @@ $tg->onCommand('start', function (Nutgram $bot) use ($db) {
     messageHandler($bot, new User($db));
 });
 
+echo "\r\n ----- 0 -------";
+
 $tg->onMessage(function (Nutgram $bot) use ($db) {
 
     $userQuery = new ActiveQuery(User::class, $db);
