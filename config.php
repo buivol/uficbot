@@ -9,9 +9,9 @@ return [
 
 
     'driver' => new \Yiisoft\Db\Mysql\Driver(
-        (new \Yiisoft\Db\Mysql\Dsn('mysql', '127.0.0.1', 'u1998825_tg', '3306', ['charset' => 'utf8mb4']))->asString(),
-        'u1998825_tg',
-        '@Telega123@',
+        (new \Yiisoft\Db\Mysql\Dsn('mysql', '127.0.0.1', 'bot', '3306', ['charset' => 'utf8mb4']))->asString(),
+        'bot',
+        '@Bot777@',
     ),
-    
+
 ];
