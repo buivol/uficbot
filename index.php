@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 global $db;
 require_once './init.php';
@@ -34,9 +37,7 @@ $tg->onCommand('start', function (Nutgram $bot) use ($db) {
     messageHandler($bot, new User($db));
 });
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(~E_ALL);
+
 
 echo "\r\n ----- 0 -------";
 
