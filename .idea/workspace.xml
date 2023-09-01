@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f2324d02-e591-44e5-b85c-bfb693b85172" name="Changes" comment="новая бд">
+    <list default="true" id="f2324d02-e591-44e5-b85c-bfb693b85172" name="Changes" comment="отладка">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,7 +45,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1693246547359</updated>
-      <workItem from="1693246548364" duration="21389000" />
+      <workItem from="1693246548364" duration="22405000" />
     </task>
     <task id="LOCAL-00001" summary="тест">
       <option name="closed" value="true" />
@@ -87,7 +87,23 @@
       <option name="project" value="LOCAL" />
       <updated>1693580688484</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="add phpinfo();">
+      <option name="closed" value="true" />
+      <created>1693581157463</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1693581157463</updated>
+    </task>
+    <task id="LOCAL-00007" summary="отладка">
+      <option name="closed" value="true" />
+      <created>1693581507278</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1693581507278</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -101,6 +117,8 @@
     <MESSAGE value="уработка с ошибками" />
     <MESSAGE value="добавил класс для работы с бд" />
     <MESSAGE value="новая бд" />
-    <option name="LAST_COMMIT_MESSAGE" value="новая бд" />
+    <MESSAGE value="add phpinfo();" />
+    <MESSAGE value="отладка" />
+    <option name="LAST_COMMIT_MESSAGE" value="отладка" />
   </component>
 </project>
