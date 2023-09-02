@@ -11,6 +11,7 @@ return array(
     '7b11c4dc42b3b3023073cb14e519683c' => $vendorDir . '/ralouphie/getallheaders/src/getallheaders.php',
     '667aeda72477189d0494fecd327c3641' => $vendorDir . '/symfony/var-dumper/Resources/functions/dump.php',
     '37a3dc5111fe8f707ab4c132ef1dbc62' => $vendorDir . '/guzzlehttp/guzzle/src/functions_include.php',
-    '6849dc9b0ebd4a5e94b1a098400b5c75' => $vendorDir . '/nutgram/nutgram/src/Support/Helpers.php',
     '0e423a14e27410a071e5d815d3ffc856' => $vendorDir . '/larapack/dd/src/helper.php',
+    '6849dc9b0ebd4a5e94b1a098400b5c75' => $vendorDir . '/nutgram/nutgram/src/Support/Helpers.php',
+    'dd210022bf435ff398a2e6d7c130d749' => $vendorDir . '/php-patterns/activerecord/ActiveRecord.php',
 );

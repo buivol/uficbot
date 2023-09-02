@@ -11,18 +11,17 @@ $config = require './config.php';
 
 use SergiX44\Nutgram\Nutgram;
 use SergiX44\Nutgram\RunningMode\Webhook;
-use Yiisoft\Cache\ArrayCache;
-use \Yiisoft\Db\Cache\SchemaCache;
-use \Yiisoft\Db\Mysql\Connection;
+use SergiX44\Nutgram\RunningMode\Polling;
 use \SergiX44\Nutgram\Configuration;
 
 // Connection.
-$arrayCache = new ArrayCache();
-$schemaCache = new SchemaCache($arrayCache);
-$db = new Connection($config['driver'], $schemaCache);
+$cfg = ActiveRecord\Config::instance();
+$cfg->set_connections($config['db']);
+$cfg->set_default_connection('prod');
+$cfg->set_date_format( "Y-m-d H:i:s" );
 
 
 $tg = new Nutgram($config['telegram']['token'], new Configuration(logger: \SergiX44\Nutgram\Logger\ConsoleLogger::class));
-$tg->setRunningMode(\SergiX44\Nutgram\RunningMode\Polling::class);
+$tg->setRunningMode(Polling::class);
 //TODO: Сделать чтобы ставился один раз, а не при каждом вызове
 //$tg->setWebhook($config['telegram']['webhookUrl']);

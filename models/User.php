@@ -1,28 +1,27 @@
 <?php
 namespace models;
 
-use Yiisoft\ActiveRecord\ActiveRecord;
-use Yiisoft\ActiveRecord\ActiveRecordFactory;
-use Yiisoft\Db\Connection\ConnectionInterface;
+use ActiveRecord\Model;
 
-class User extends ActiveRecord
+/**
+ * @property int $id
+ * @property string $nickname
+ * @property string $first_name;
+ * @property string $last_name;
+ * @property string $name;
+ * @property int $birth;
+ * @property int $room;
+ * @property string $phone;
+ * @property string $step;
+ * @property string $last_message;
+ * @property int $is_admin;
+ * @property string $created_at;
+ * @property double $balance;
+ *
+ */
+class User extends Model
 {
-    public $id;
-    public $nickname;
-    public $first_name;
-    public $second_name;
-    public $last_name;
-    public $phone;
-    public $step;
-    public $last_message;
-    public $is_admin;
-
-
-    public static function tableName(): string
-    {
-        return 'user';
-    }
-
+//    static $ = 'Y-m-d H:i:s T';
 }
 
 

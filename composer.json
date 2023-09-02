@@ -10,10 +10,8 @@
     ],
     "require": {
         "nutgram/nutgram": "^4.5",
-        "yiisoft/db-mysql": "^1.0",
-        "yiisoft/active-record": "3.0.x-dev",
-        "yiisoft/cache": "^3.0",
-        "larapack/dd": "^1.1"
+        "larapack/dd": "^1.1",
+        "php-patterns/activerecord": "^1.1"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

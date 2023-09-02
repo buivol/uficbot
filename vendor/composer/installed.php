@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'dec8e4e9bf5482f7300fdb8ff1bd21244d5d20bc',
+    'reference' => '7a768f079a8867b87170919dee283a2ceb0b2779',
     'name' => 'ufic/robot',
   ),
   'versions' => 
@@ -82,6 +82,15 @@
       array (
       ),
       'reference' => '5e6d905d7e16d106fb77d2c5105fb7ab848ce726',
+    ),
+    'php-patterns/activerecord' => 
+    array (
+      'pretty_version' => 'v1.1.11',
+      'version' => '1.1.11.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'b98262eb3b5a0c14e2239fd845c410ec66327b91',
     ),
     'psr/container' => 
     array (
@@ -224,7 +233,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'dec8e4e9bf5482f7300fdb8ff1bd21244d5d20bc',
+      'reference' => '7a768f079a8867b87170919dee283a2ceb0b2779',
     ),
     'yiisoft/active-record' => 
     array (

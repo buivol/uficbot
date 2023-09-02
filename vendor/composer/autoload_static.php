@@ -12,8 +12,9 @@ class ComposerStaticInit50f31f36568047fb5d465542e73ffca9
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
-        '6849dc9b0ebd4a5e94b1a098400b5c75' => __DIR__ . '/..' . '/nutgram/nutgram/src/Support/Helpers.php',
         '0e423a14e27410a071e5d815d3ffc856' => __DIR__ . '/..' . '/larapack/dd/src/helper.php',
+        '6849dc9b0ebd4a5e94b1a098400b5c75' => __DIR__ . '/..' . '/nutgram/nutgram/src/Support/Helpers.php',
+        'dd210022bf435ff398a2e6d7c130d749' => __DIR__ . '/..' . '/php-patterns/activerecord/ActiveRecord.php',
     );
 
     public static $prefixLengthsPsr4 = array (
