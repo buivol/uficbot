@@ -116,16 +116,45 @@ class MessageHandler
     public function step_mainpage(Nutgram &$bot, User &$user)
     {
         $message = "Привет, {$user->name}\n" .
-                    "На твоём счету {$user->balance} руб.\n" .
-                    "Чем я могу тебе помочь?\n";
+            "На твоём счету {$user->balance} руб.\n" .
+            "Чем я могу тебе помочь?\n";
 
         $bot->sendMessage(text: $message, reply_markup: InlineKeyboardMarkup::make()->addRow(
-            InlineKeyboardButton::make('Пополнить счёт', callback_data: 'add_balance'))->addRow(
+            InlineKeyboardButton::make('Пополнить счёт', callback_data: CALLBACK_ADD_BALANCE))->addRow(
             InlineKeyboardButton::make('Купить талоны', callback_data: 'talon_start'))->addRow(
             InlineKeyboardButton::make('Купить бланки заявлений', callback_data: 'zayava'))->addRow(
             InlineKeyboardButton::make('Напечатать заявление', callback_data: 'print'))->addRow(
             InlineKeyboardButton::make('Сообщить свой график', callback_data: 'grafik'))
         );
+    }
+
+
+    public function callback_add_balance(Nutgram &$bot, User &$user)
+    {
+        $message = "Чтобы пополнить свой баланс отпавь необходимую сумму по номеру телефона +7 (999) 999-99-99 в комментарии к платежу укажи:"
+            . "\n\nПополнение бота №{$user->id}";
+        $keyboard = InlineKeyboardMarkup::make()->addRow(
+            InlineKeyboardButton::make('Я пополнил', callback_data: CALLBACK_ADD_BALANCE))->addRow(
+            InlineKeyboardButton::make('Могу только наличными', callback_data: 'talon_start'))->addRow(
+            InlineKeyboardButton::make('< Назад', callback_data: CALLBACK_MAIN));
+
+        $bot->editMessageText(text: $message, chat_id: $bot->userId(), message_id: $bot->callbackQuery()->message->message_id, reply_markup: $keyboard);
+
+    }
+
+    public function callback_main(Nutgram &$bot, User &$user)
+    {
+        $message = "Привет, {$user->name}\n" .
+            "На твоём счету {$user->balance} руб.\n" .
+            "Чем я могу тебе помочь?\n";
+
+        $keyboard = InlineKeyboardMarkup::make()->addRow(InlineKeyboardButton::make('Пополнить счёт', callback_data: CALLBACK_ADD_BALANCE))->addRow(
+            InlineKeyboardButton::make('Купить талоны', callback_data: 'talon_start'))->addRow(
+            InlineKeyboardButton::make('Купить бланки заявлений', callback_data: 'zayava'))->addRow(
+            InlineKeyboardButton::make('Напечатать заявление', callback_data: 'print'))->addRow(
+            InlineKeyboardButton::make('Сообщить свой график', callback_data: 'grafik'));
+
+        $bot->editMessageText(text: $message, chat_id: $bot->userId(), message_id: $bot->callbackQuery()->message->message_id, reply_markup: $keyboard);
     }
 
 }

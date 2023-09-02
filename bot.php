@@ -17,6 +17,10 @@ const STEP_REGISTRATION_PHONE = 'registration_phone';
 const STEP_MAINPAGE = 'mainpage';
 
 
+const CALLBACK_ADD_BALANCE = 'add_balance';
+const CALLBACK_MAIN = 'main';
+
+
 file_put_contents('last_request.log', file_get_contents('php://input'));
 
 /** @var $tg Nutgram */
@@ -46,7 +50,11 @@ $tg->onMessage(function (Nutgram $bot) {
 
 
 $tg->onCallbackQuery(function (Nutgram $bot){
-    $bot->sendMessage('Callback: ' . $bot->callbackQuery()->data);
+    $handler = new MessageHandler();
+    $user = User::find($bot->userId());
+    $func = "callback_" . $bot->callbackQuery()->data;
+    $handler->$func($bot, $user);
+    $user->save();
 });
 
 
