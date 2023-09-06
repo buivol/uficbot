@@ -217,37 +217,61 @@ class MessageHandler
         $user->step = STEP_TALON_COUNT;
     }
 
-    public function callback_buy_talon(Nutgram &$bot, User &$user)
+    public function callback_buy_talon(Nutgram &$bot, User &$user, $isDelivery = 0)
     {
         $product = Product::find(1);
         $summ = $product->price * $user->talon_count;
+        if($isDelivery){
+            $summ += DELIVERY_PRICE;
+        }
         $order = new Order();
         $order->user_id = $user->id;
         $order->talon_count = $user->talon_count;
+        $order->is_delivery = $isDelivery ?? 0;
+        $order->price = $summ;
+
         $order->save();
 
 
-        $message = "<b>Новый заказ</b>\n\n" .
+
+        $message = "<b>Новый заказ #{$order->id}</b>\n\n" .
             "Талоны {$user->talon_count} шт.\n" .
             "Сумма: {$summ}\n" .
-            "Без доставки\n\n" .
+            ($order->is_delivery ? "С доставкой в хату {$user->room}\n\n" : "Без доставки\n\n") .
             $user->fullName() . "\n" .
             "Хата: {$user->room}";
         $keyboard = InlineKeyboardMarkup::make()
             ->addRow(
                 InlineKeyboardButton::make("Связаться", url: "tg://user?id={$user->id}")
             )->addRow(
-                InlineKeyboardButton::make("Заказ выполнен", callback_data: 'order_success/123213')
+                InlineKeyboardButton::make("Заказ выполнен", callback_data: "order_success/{$order->id}" )
             )->addRow(
-                InlineKeyboardButton::make('Отменить заказ', callback_data: 'order_error/123123213')
+                InlineKeyboardButton::make('Отменить заказ', callback_data: "order_reject/{$order->id}")
             );
 
         $this->sendAdmin($bot, $message, $keyboard);
 
 
-
-
     }
+
+    public function callback_order_success(Nutgram &$bot, User &$user, $orderId)
+    {
+        $order = Order::find($orderId);
+        $order->success();
+        $message = "Заказ {$orderId} выполнен";
+        $this->sendAdmin($bot, $message);
+    }
+
+
+    public function callback_order_reject(Nutgram &$bot, User &$user, $orderId)
+    {
+        $order = Order::find($orderId);
+        $order->reject();
+        $message = "Заказ {$orderId} отменён";
+        $this->sendAdmin($bot, $message);
+    }
+
+
 
     public function callback_main(Nutgram &$bot, User &$user)
     {

@@ -22,6 +22,14 @@ class Order extends Model
     const STATUS_SUCCESS = 2;
     const STATUS_REJECT = 3;
 
+    public function reject()
+    {
+
+    }
+    public function success()
+    {
+
+    }
 
 }
 

@@ -16,6 +16,7 @@ const STEP_REGISTRATION_ROOM = 'registration_room';
 const STEP_REGISTRATION_PHONE = 'registration_phone';
 const STEP_TALON_COUNT = 'talon_count';
 const STEP_MAINPAGE = 'mainpage';
+const DELIVERY_PRICE = 10.00;
 
 
 const CALLBACK_ADD_BALANCE = 'add_balance';
