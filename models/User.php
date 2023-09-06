@@ -15,6 +15,9 @@ use ActiveRecord\Model;
  * @property string $step;
  * @property string $last_message;
  * @property int $is_admin;
+ * @property int $talon_count;
+ * @property int $zayav_count;
+ * @property int $last_message_id;
  * @property string $created_at;
  * @property double $balance;
  *

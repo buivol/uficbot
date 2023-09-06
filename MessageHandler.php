@@ -3,8 +3,12 @@
 namespace App;
 
 use helpers\TextUtils;
+use models\Product;
 use models\User;
 use SergiX44\Nutgram\Nutgram;
+use SergiX44\Nutgram\Telegram\Properties\ParseMode;
+use SergiX44\Nutgram\Telegram\Types\Input\InputMediaPhoto;
+use SergiX44\Nutgram\Telegram\Types\Internal\InputFile;
 use SergiX44\Nutgram\Telegram\Types\Keyboard\InlineKeyboardButton;
 use SergiX44\Nutgram\Telegram\Types\Keyboard\InlineKeyboardMarkup;
 use SergiX44\Nutgram\Telegram\Types\Keyboard\KeyboardButton;
@@ -121,7 +125,7 @@ class MessageHandler
 
         $bot->sendMessage(text: $message, reply_markup: InlineKeyboardMarkup::make()->addRow(
             InlineKeyboardButton::make('Пополнить счёт', callback_data: CALLBACK_ADD_BALANCE))->addRow(
-            InlineKeyboardButton::make('Купить талоны', callback_data: 'talon_start'))->addRow(
+            InlineKeyboardButton::make('Купить талоны', callback_data: CALLBACK_BUY_TALON_MAIN))->addRow(
             InlineKeyboardButton::make('Купить бланки заявлений', callback_data: 'zayava'))->addRow(
             InlineKeyboardButton::make('Напечатать заявление', callback_data: 'print'))->addRow(
             InlineKeyboardButton::make('Сообщить свой график', callback_data: 'grafik'))
@@ -142,19 +146,117 @@ class MessageHandler
 
     }
 
+
+    public function callback_buy_talon_main(Nutgram &$bot, User &$user)
+    {
+        $this->talon_page($bot, $user);
+    }
+
+    public function step_talon_count(Nutgram &$bot, User &$user)
+    {
+        $bot->deleteMessage($bot->userId(), $bot->message()->message_id);
+        $user->talon_count = intval($bot->message()->text);
+        $this->talon_page($bot, $user);
+    }
+
+    public function callback_buy_talon_minus_1(Nutgram &$bot, User &$user)
+    {
+        $user->talon_count--;
+        $this->talon_page($bot, $user);
+    }
+
+    public function callback_buy_talon_minus_10(Nutgram &$bot, User &$user)
+    {
+        $user->talon_count -= 10;
+        $this->talon_page($bot, $user);
+    }
+
+    public function callback_buy_talon_plus_1(Nutgram &$bot, User &$user)
+    {
+        $user->talon_count++;
+        $this->talon_page($bot, $user);
+    }
+
+    public function callback_buy_talon_plus_10(Nutgram &$bot, User &$user)
+    {
+        $user->talon_count += 10;
+        $this->talon_page($bot, $user);
+    }
+
+    public function talon_page(Nutgram &$bot, User &$user)
+    {
+        $product = Product::find(1);
+
+        if ($user->talon_count < 1) {
+            $user->talon_count = 1;
+        }
+
+        $user->talon_count = ($user->talon_count > $product->count) ? $product->count : $user->talon_count;
+        $summ = $product->price * $user->talon_count;
+
+        $message = "<b>{$product->name}</b>\n\n" .
+            "<i>{$product->description}</i>\n\n" .
+            "Выберите количество товара или введите его вручную\n" .
+            "Выбрано <b>{$user->talon_count}</b> шт.";
+        $keyboard = InlineKeyboardMarkup::make()
+            ->addRow(
+                InlineKeyboardButton::make("Оплатить {$summ} руб", callback_data: CALLBACK_ADD_BALANCE)
+            )->addRow(
+                InlineKeyboardButton::make('-1', callback_data: 'buy_talon_minus_1'),
+                InlineKeyboardButton::make('-10', callback_data: 'buy_talon_minus_10'),
+                InlineKeyboardButton::make('+10', callback_data: 'buy_talon_plus_10'),
+                InlineKeyboardButton::make('+1', callback_data: 'buy_talon_plus_1'),
+            )->addRow(
+                InlineKeyboardButton::make('< Назад', callback_data: CALLBACK_MAIN)
+            );
+        $user->last_message_id = $this->sendMessage($bot,
+            $message, 'http://blog.sergeykopylov.ru/pictures/Blank.png',
+            message_id: $bot->callbackQuery()->message->message_id,
+            keyboard: $keyboard);
+        $user->step = STEP_TALON_COUNT;
+    }
+
     public function callback_main(Nutgram &$bot, User &$user)
     {
-        $message = "Привет, {$user->name}\n" .
+        $message = "Привет, <b>{$user->name}</b>\n" .
             "На твоём счету {$user->balance} руб.\n" .
             "Чем я могу тебе помочь?\n";
 
         $keyboard = InlineKeyboardMarkup::make()->addRow(InlineKeyboardButton::make('Пополнить счёт', callback_data: CALLBACK_ADD_BALANCE))->addRow(
-            InlineKeyboardButton::make('Купить талоны', callback_data: 'talon_start'))->addRow(
+            InlineKeyboardButton::make('Купить талоны', callback_data: CALLBACK_BUY_TALON_MAIN))->addRow(
             InlineKeyboardButton::make('Купить бланки заявлений', callback_data: 'zayava'))->addRow(
             InlineKeyboardButton::make('Напечатать заявление', callback_data: 'print'))->addRow(
             InlineKeyboardButton::make('Сообщить свой график', callback_data: 'grafik'));
 
-        $bot->editMessageText(text: $message, chat_id: $bot->userId(), message_id: $bot->callbackQuery()->message->message_id, reply_markup: $keyboard);
+        $this->sendMessage($bot, $message, message_id: $bot->callbackQuery()->message->message_id, keyboard: $keyboard);
+    }
+
+    public function sendMessage(Nutgram &$bot, $message = '', $photo = null, $message_id = null, $keyboard = null): int
+    {
+        try {
+            $bot->deleteMessage(chat_id: $bot->userId(), message_id: $message_id);
+        } catch (\Exception $e) {
+
+        } finally {
+            if ($photo) {
+                $m = $bot->sendPhoto(photo: $photo, chat_id: $bot->userId(), caption: $message, parse_mode: ParseMode::HTML, reply_markup: $keyboard);
+                return $m->message_id;
+            } else {
+                $m = $bot->sendMessage(text: $message, chat_id: $bot->userId(), parse_mode: ParseMode::HTML, reply_markup: $keyboard);
+                return $m->message_id;
+            }
+        }
+    }
+
+    public function sendAdmin(Nutgram &$bot, $text, $keyboard = null)
+    {
+        $m = $bot->sendMessage(text: $text, chat_id: ADMIN_CHAT_ID, parse_mode: ParseMode::HTML, reply_markup: $keyboard);
+        return $m->message_id;
+    }
+
+    public function onAdminMessage(Nutgram &$bot)
+    {
+
     }
 
 }
