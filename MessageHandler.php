@@ -3,6 +3,7 @@
 namespace App;
 
 use helpers\TextUtils;
+use models\Order;
 use models\Product;
 use models\User;
 use SergiX44\Nutgram\Nutgram;
@@ -200,7 +201,7 @@ class MessageHandler
             "Выбрано <b>{$user->talon_count}</b> шт.";
         $keyboard = InlineKeyboardMarkup::make()
             ->addRow(
-                InlineKeyboardButton::make("Оплатить {$summ} руб", callback_data: CALLBACK_ADD_BALANCE)
+                InlineKeyboardButton::make("Оплатить {$summ} руб", callback_data: CALLBACK_BUY_TALON)
             )->addRow(
                 InlineKeyboardButton::make('-1', callback_data: 'buy_talon_minus_1'),
                 InlineKeyboardButton::make('-10', callback_data: 'buy_talon_minus_10'),
@@ -210,10 +211,42 @@ class MessageHandler
                 InlineKeyboardButton::make('< Назад', callback_data: CALLBACK_MAIN)
             );
         $user->last_message_id = $this->sendMessage($bot,
-            $message, 'http://blog.sergeykopylov.ru/pictures/Blank.png',
+            $message, $product->photo,
             message_id: $bot->callbackQuery()->message->message_id,
             keyboard: $keyboard);
         $user->step = STEP_TALON_COUNT;
+    }
+
+    public function callback_buy_talon(Nutgram &$bot, User &$user)
+    {
+        $product = Product::find(1);
+        $summ = $product->price * $user->talon_count;
+        $order = new Order();
+        $order->user_id = $user->id;
+        $order->talon_count = $user->talon_count;
+        $order->save();
+
+
+        $message = "<b>Новый заказ</b>\n\n" .
+            "Талоны {$user->talon_count} шт.\n" .
+            "Сумма: {$summ}\n" .
+            "Без доставки\n\n" .
+            $user->fullName() . "\n" .
+            "Хата: {$user->room}";
+        $keyboard = InlineKeyboardMarkup::make()
+            ->addRow(
+                InlineKeyboardButton::make("Связаться", url: "tg://user?id={$user->id}")
+            )->addRow(
+                InlineKeyboardButton::make("Заказ выполнен", callback_data: 'order_success/123213')
+            )->addRow(
+                InlineKeyboardButton::make('Отменить заказ', callback_data: 'order_error/123123213')
+            );
+
+        $this->sendAdmin($bot, $message, $keyboard);
+
+
+
+
     }
 
     public function callback_main(Nutgram &$bot, User &$user)

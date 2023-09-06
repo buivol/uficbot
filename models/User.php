@@ -24,6 +24,10 @@ use ActiveRecord\Model;
  */
 class User extends Model
 {
+    public function fullName()
+    {
+        return "{$this->first_name} {$this->name} {$this->last_name}";
+    }
 //    static $ = 'Y-m-d H:i:s T';
 }
 

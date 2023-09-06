@@ -20,6 +20,7 @@ const STEP_MAINPAGE = 'mainpage';
 
 const CALLBACK_ADD_BALANCE = 'add_balance';
 const CALLBACK_BUY_TALON_MAIN = 'buy_talon_main';
+const CALLBACK_BUY_TALON = 'buy_talon';
 const CALLBACK_MAIN = 'main';
 
 const ADMIN_CHAT_ID = -960649112;
@@ -63,8 +64,9 @@ $tg->onMessage(function (Nutgram $bot) use ($handler) {
 
 $tg->onCallbackQuery(function (Nutgram $bot) use ($handler){
     $user = User::find($bot->userId());
-    $func = "callback_" . $bot->callbackQuery()->data;
-    $handler->$func($bot, $user);
+    $arr = explode('/', $bot->callbackQuery()->data);
+    $func = "callback_" . $arr[0];
+    $handler->$func($bot, $user, $arr[1] ?? null);
     $user->save();
 });
 
